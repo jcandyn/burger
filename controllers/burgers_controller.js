@@ -19,13 +19,13 @@ router.get("/", function(req, res) {
     });
   });
 
-// router.get('/burgers', function (req, res) {
+router.get('/burgers', function (req, res) {
 
-//   burger.selectAll(function (data) {
-//     var hbsObject = { burgers: data };
-//     res.render('index', hbsObject);
-//   });
-// });
+  burger.selectAll(function (data) {
+    var hbsObject = { burgers: data };
+    res.render('index', hbsObject);
+  });
+});
 
 router.post('/burgers/insertOne', function (req, res) {
   burger.insertOne(['burger_name', 'devoured'], [req.body.burger_name, false], function () {

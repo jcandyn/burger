@@ -2,7 +2,7 @@
 */
 var express = require('express');
 var bodyParser = require('body-parser');
-// var methodOverride = require('method-override');
+var methodOverride = require('method-override');
 var exphbs = require('express-handlebars');
 var app = express();
 var router = require('./controllers/burgers_controller.js');
@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 // override with POST having ?_method=DELETE
-// app.use(methodOverride('_method'));
+app.use(methodOverride('_method'));
 
 //setup handlebars templating engine
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
