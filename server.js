@@ -22,9 +22,15 @@ app.set('view engine', 'handlebars');
 
 
 app.use('/', router);
+app.set( 'port', ( process.env.PORT || 5000 ));
 
+// var port = process.env.PORT || 8080;
+// Start node server
+app.listen( app.get( 'port' ), function() {
+  console.log( 'Node server is running on port ' + app.get( 'port' ));
+  });
 // Set up the server
-var port = process.env.PORT || 8080;
-app.listen(port, function() {
-  console.log("App is listening on port " + port);
-});
+
+// app.listen(port, function() {
+//   console.log("App is listening on port " + port);
+// });
