@@ -2,16 +2,16 @@
 
         <div class="jumbotron text-center">
 
-            <h1>Build A Burger</h1>
+            <h1>Build-A-Burger</h1>
             <img  src="https://media1.giphy.com/media/3o85xJx8kj5ryC9aEg/giphy.gif" alt="burger icon" height="100" width="100"/>
         </div>
 
         <div class="row">
 
-            <div class="col-md-12 ">
+            <div class="col-md-12">
                 <div class="col-md-4">
                     <div class="leftBurgers">
-                        <h2 class="heading">Designer Burgers</h2>
+                        <h2 class="heading">Bon Appétit</h2>
                         <ul>
                           {{#each burgers}}
                             {{#unless this.devoured}}
@@ -19,7 +19,7 @@
                                 <p class="burgerType">{{this.burger_name}}</p>
                                 <form action="burgers/updateOne/{{this.id}}?_method=PUT" method="POST">
                                   <input type="hidden" name="devoured" value="true">
-                                  <button class="btnDevour" type="submit">Devour it</button>
+                                  <button class="btnDevour btn btn-warning" type="submit">Devour it!</button>
                                 </form>
                               </li>
                             {{/unless}}
@@ -32,11 +32,11 @@
                     <div class="input">
 
 
-                        <h2  class="heading" id="add">Create A Designer Burger</h2>
+                        <h2  class="heading" id="add">Create THAT Burger</h2>
                         <div class="form-group">
                             <form method="POST" action="burgers/insertOne" class="addOne text-center">
                                 <textarea id="textArea" type="text" name="burger_name" rows="2" cols="40"></textarea>
-                                <button id="btnCreate"  type="submit" >Create Your Burger!</button>
+                                <button class="btn btn-success" id="btnCreate"  type="submit" >Create Your Burger!</button>
                             </form>
                         </div>
                     </div>
@@ -44,14 +44,14 @@
 
                 <div class="col-md-4 text-left">
                     <div class="rightBurgers">
-                        <h2 class="heading">Old Favorites</h2>
+                        <h2 class="heading">Good ol' Burgers</h2>
                         <ul>
                           {{#each burgers}}
                             {{#if this.devoured}}
                               <li>
                                 <p class="burgerType">{{this.burger_name}}</p>
                                 <form action="burgers/delete/{{this.id}}?_method=DELETE" method="POST">
-                                  <button class="btnDevour" type="submit">Delete it</button>
+                                  <button class="btnDevour btn btn-danger" type="submit">Delete it</button>
                                 </form>
                               </li>
                             {{/if}}
