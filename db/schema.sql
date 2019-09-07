@@ -7,6 +7,3 @@ CREATE TABLE burgers (
     burger_name VARCHAR(50) NOT NULL,
     devoured BOOLEAN
 );
--- INSERT INTO burgers (burger_name, devoured)
--- VALUES ("La Bestia", 0);
--- SELECT * FROM burgers;

@@ -16,60 +16,32 @@ function objToSql(ob) {
   // loop through the keys and push the key/value as a string int arr
   for (var key in ob) {
     var value = ob[key];
-    // check to skip hidden properties
     if (Object.hasOwnProperty.call(ob, key)) {
-      // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
       if (typeof value === "string" && value.indexOf(" ") >= 0) {
         value = "'" + value + "'";
       }
-      // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
-      // e.g. {sleepy: true} => ["sleepy=true"]
       arr.push(key + "=" + value);
     }
   }
-
-  // translate array of strings to a single comma-separated string
   return arr.toString();
 }
-// Object Relational Mapper (ORM)
 
-// The ?? signs are for swapping out table or column names
-// The ? signs are for swapping out other values
-// These help avoid SQL injection
-// https://en.wikipedia.org/wiki/SQL_injection
 var orm = {
     
-  // selectAll: function(tableInput) {
-  //   var queryString = "SELECT * FROM ??";
-  //   connection.query(queryString, [tableInput], function(err, result) {
-  //     if (err) throw err;
-  //     console.log(result);
-  //   });
-  // },
 
-    selectAll: function (table, cb) {
+    selectAll: function (table, callback) {
       var queryString = 'SELECT * FROM ' + table + ';';
       connection.query(queryString, function (err, result) {
         if (err) {
           throw err;
         }
   
-        cb(result);
+        callback(result);
       });
     },
 
-  
-  // insertOne: function(table, burger) {
-  //   // const burger = {burger_name: "ciao", devoured: 1}
-  //   var queryString = "INSERT INTO ?? SET ? ";
-  //   console.log(queryString);
-  //   connection.query(queryString, [table, burger], function(err, result) {
-  //     if (err) throw err;
-  //     console.log(result);
-  //   });
-  // },
 
-  insertOne: function (table, cols, vals, cb) {
+  insertOne: function (table, cols, vals, callback) {
     var queryString = 'INSERT INTO ' + table;
 
     queryString = queryString + ' (';
@@ -84,23 +56,10 @@ var orm = {
         throw err;
       }
 
-      cb(result);
+      callback(result);
     });
   },
 
-
-  // updateOne: function(table, col, newVal, id) {
-  //   var queryString =
-  //     "UPDATE ?? SET ?? = ? WHERE id = ?";
-  //   connection.query(
-  //     queryString,
-  //     [table, col, newVal, id],
-  //     function(err, result) {
-  //       if (err) throw err;
-  //       console.log(result);
-  //     }
-  //   );
-  // }
 
   updateOne: function (table, objColVals, condition, callback) {
     var queryString = 'UPDATE ' + table;
@@ -116,7 +75,7 @@ var orm = {
     });
   },
 
-  delete: function (table, condition, cb) {
+  delete: function (table, condition, callback) {
     var queryString = 'DELETE FROM ' + table;
     queryString = queryString + ' WHERE ';
     queryString = queryString + condition;
@@ -127,7 +86,7 @@ var orm = {
         throw err;
       }
 
-      cb(result);
+      callback(result);
     });
   }
 };
